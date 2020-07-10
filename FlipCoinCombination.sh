@@ -1,34 +1,58 @@
 #!/bin/bash
 
 read -p "How many Times you want to Flip the Coin:" Limit
-declare -A Doublet
+declare -A Triplet
 
 for (( i=0; i<Limit; i++ ))
 do
-	num=$((RANDOM%4))
+	num=$((RANDOM%8))
 	if [[ $num -eq 0 ]]
-     	then
-		Doublet[$i]=`echo HH`
-		((count_HH++))
-     	elif [[ $num -eq 1 ]]
-	then
-        	Doublet[$i]=`echo TH`
-		((count_TH++))
-	elif [[ $num -eq 2 ]]
-	then
-		Doublet[$i]=`echo HT`
-                ((count_HT++))
-	 else
-                Doublet[$i]=`echo TT`
-                ((count_TT++))
-	fi
+        then
+                Triplet[$i]=`echo HHH`
+                ((count_HHH++))
+        elif [[ $num -eq 1 ]]
+        then
+                Triplet[$i]=`echo HHT`
+                ((count_HHT++))
+        elif [[ $num -eq 2 ]]
+        then
+                Triplet[$i]=`echo HTH`
+                ((count_HTH++))
+        elif [[ $num -eq 3 ]]
+        then
+                Triplet[$i]=`echo THH`
+                ((count_THH++))
+        elif [[ $num -eq 4 ]]
+        then
+                Triplet[$i]=`echo HTT`
+                ((count_HTT++))
+        elif [[ $num -eq 5 ]]
+        then
+                Triplet[$i]=`echo THT`
+                ((count_THT++))
+        elif [[ $num -eq 6 ]]
+        then
+                Triplet[$i]=`echo TTH`
+                ((count_TTH++))
+        else
+                Triplet[$i]=`echo TTT`
+                ((count_TTT++))
+        fi
 done
-echo "Doublet Directory : "${Doublet[@]}
-echo "HH have been faced $count_HH times"
-echo "HT have been faced $count_HT times"
-echo "TH have been faced $count_TH times"
-echo "TT have been faced $count_TT times"
-echo "HH Percentage=" $(($count_HH*100/$Limit))
-echo "TH Percentage=" $(($count_TH*100/$Limit))
-echo "HT Percentage=" $(($count_HT*100/$Limit))
-echo "TT Percentage=" $(($count_TT*100/$Limit))
+echo "Triplet Directory : "${Triplet[@]}
+echo "HHH have been faced $count_HHH times"
+echo "HHT have been faced $count_HHT times"
+echo "HTH have been faced $count_HTH times"
+echo "THH have been faced $count_THH times"
+echo "HTT have been faced $count_HTT times"
+echo "THt have been faced $count_THT times"
+echo "TTH have been faced $count_TTH times"
+echo "TTT have been faced $count_TTT times"
+echo "HHH Percent=" $(($count_HHH*100/$Limit))
+echo "HHT Percent=" $(($count_HHT*100/$Limit))
+echo "HTH Percent=" $(($count_HTH*100/$Limit))
+echo "THH Percent=" $(($count_THH*100/$Limit))
+echo "HTT Percent=" $(($count_HTT*100/$Limit))
+echo "THT Percent=" $(($count_THT*100/$Limit))
+echo "THH Percent=" $(($count_TTH*100/$Limit))
+echo "TTT Percent=" $(($count_TTT*100/$Limit))
